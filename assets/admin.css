@@ -1,0 +1,1409 @@
+/**
+ * SnipCore admin styles.
+ *
+ * Enqueued only on SnipCore's own admin screens (All Snippets,
+ * Add/Edit Snippet, Global Header & Footer, Settings) — see
+ * SnipCore_Admin::enqueue_assets(). Extracted verbatim from the
+ * former SnipCore_Admin::get_inline_css() inline string; no rules
+ * were added, removed, or changed.
+ */
+
+/* Shared form-control styling: a single consistent border
+   color, thickness, and radius across every SnipCore admin
+   page — All Snippets search box, Add/Edit Snippet fields,
+   Global Header & Footer editors, and the Settings screen's
+   selects — so none of them use the browser/WP-core default
+   heavier border. This stylesheet is only ever enqueued on
+   SnipCore's own admin screens (see enqueue_assets()), so
+   scoping by element/class here is safe without a wrapper
+   class. Page-specific rules further down only add
+   sizing/spacing, never re-declare border color/width/
+   radius, so this stays the single source of truth for that.
+   Radio/checkbox inputs are excluded so this never touches
+   the Device Display radios or any checkbox. */
+input[type="text"],
+input[type="search"],
+input[type="number"],
+select,
+textarea,
+.snipcore-code-editor-wrap .CodeMirror,
+.snipcore-header-footer-editor .CodeMirror {
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+	border-color: #2271b1;
+}
+.snipcore-hidden {
+	display: none !important;
+}
+.snipcore-snippets-table td, .snipcore-snippets-table th {
+	padding: 9px 12px;
+	vertical-align: middle;
+}
+.snipcore-snippets-table tbody td {
+	border-bottom: 1px solid #f0f0f1;
+}
+.snipcore-snippets-table td.column-cb, .snipcore-snippets-table th.column-cb {
+	padding-right: 0;
+	width: 2.2em;
+}
+.snipcore-snippets-table td.column-snipcore-description,
+.snipcore-snippets-table th.column-snipcore-description {
+	width: 30%;
+	max-width: 30%;
+}
+.snipcore-snippets-table td.column-snipcore-description {
+	height: 44px;
+	box-sizing: border-box;
+}
+.snipcore-snippets-table td.column-snipcore-tags,
+.snipcore-snippets-table th.column-snipcore-tags {
+	width: 16%;
+	max-width: 16%;
+}
+.snipcore-snippets-table td.column-primary {
+	vertical-align: top;
+}
+.snipcore-description-text {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	max-width: 100%;
+	max-height: 2.86em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	word-break: break-word;
+	line-height: 1.43;
+}
+.snipcore-snippets-table th:nth-child(3),
+.snipcore-snippets-table td:nth-child(3) {
+	width: 60px;
+	white-space: nowrap;
+}
+.snipcore-snippets-table th:last-child,
+.snipcore-snippets-table td:last-child {
+	width: 25ch;
+	white-space: nowrap;
+}
+.snipcore-snippets-table .row-actions {
+	position: static !important;
+	left: auto !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	white-space: nowrap !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-top: 5px;
+	font-size: 12px;
+}
+.snipcore-snippets-table .row-actions .edit a {
+	font-weight: 600;
+}
+.snipcore-snippets-table .row-actions .clone a,
+.snipcore-snippets-table .row-actions .export a {
+	font-weight: 400;
+}
+.snipcore-snippets-table .row-actions .trash a {
+	font-weight: 400;
+	color: #b32d2e;
+}
+.snipcore-snippets-table .row-actions .trash a:hover,
+.snipcore-snippets-table .row-actions .trash a:focus {
+	color: #b32d2e;
+}
+.snipcore-bulk-actions {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 6px 0;
+}
+.snipcore-bulk-actions.snipcore-bulk-actions-bottom {
+	margin-top: 4px;
+}
+.snipcore-bulk-notice {
+	margin: 12px 0;
+}
+.snipcore-import-file-list {
+	margin: 4px 0 12px;
+	max-width: 480px;
+}
+.snipcore-import-file-list li {
+	padding: 2px 0;
+}
+.snipcore-import-file-invalid {
+	color: #b32d2e;
+}
+.snipcore-import-summary {
+	color: #646970;
+}
+.snipcore-field-row-disabled {
+	opacity: 0.5;
+}
+.snipcore-snippets-table tr.snipcore-row-active {
+	background: #f6f9fc;
+	border-left: 2px solid #72aee6;
+}
+.snipcore-snippets-table tr.snipcore-row-inactive {
+	background: #fff;
+}
+.snipcore-snippets-table tr.snipcore-row-inactive .row-title {
+	color: #3c434a;
+}
+.snipcore-snippets-table tr.snipcore-row-inactive td:not(.column-primary) {
+	color: #787c82;
+}
+.snipcore-snippets-table .row-title {
+	font-size: 13px;
+	font-weight: 400;
+	transition: font-weight 0.15s ease-in-out;
+}
+.snipcore-snippets-table tr.snipcore-row-active .row-title {
+	font-weight: 600;
+}
+.snipcore-name-cell {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+.snipcore-name-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.snipcore-location-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 3px;
+	background: #f0f0f1;
+	color: #50575e;
+	font-size: 12px;
+}
+.snipcore-tag-chip {
+	display: inline-block;
+	padding: 1px 7px;
+	margin: 1px 4px 1px 0;
+	border-radius: 3px;
+	background: #f0f0f1;
+	color: #3c434a;
+	font-size: 12px;
+}
+.snipcore-empty-cell {
+	color: #a7aaad;
+}
+.snipcore-status-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 3px;
+	font-size: 12px;
+	font-weight: 600;
+}
+.snipcore-status-active {
+	background: #edfaef;
+	color: #1a7a2e;
+}
+.snipcore-status-inactive {
+	background: #f0f0f1;
+	color: #646970;
+}
+.snipcore-schedule-badge {
+	display: inline-block;
+	font-size: 11px;
+	font-style: italic;
+}
+.snipcore-schedule-upcoming {
+	color: #996800;
+}
+.snipcore-schedule-active {
+	color: #1a7a2e;
+}
+.snipcore-schedule-expired {
+	color: #a7aaad;
+}
+.snipcore-diagnostics {
+	margin: 12px 0 20px;
+	padding: 12px 16px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	max-width: 700px;
+}
+.snipcore-diagnostics h2 {
+	margin: 0 0 8px;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	color: #646970;
+}
+.snipcore-diagnostics ul {
+	margin: 0;
+	list-style: none;
+}
+.snipcore-diagnostics li {
+	padding: 2px 0;
+	font-size: 13px;
+}
+.snipcore-diagnostics li strong {
+	display: inline-block;
+	min-width: 110px;
+}
+.snipcore-export-list {
+	max-height: 280px;
+	overflow-y: auto;
+	border: 1px solid #dcdcde;
+	background: #fff;
+	padding: 10px 14px;
+	margin: 0 0 12px;
+	list-style: none;
+}
+.snipcore-export-list li {
+	padding: 4px 0;
+}
+.snipcore-import-preview-table td code {
+	display: inline-block;
+	max-width: 480px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.snipcore-skipped-files {
+	list-style: disc;
+	margin: 0.5em 0 0.5em 20px;
+}
+.snipcore-import-row-duplicate {
+	background: #fef8ee;
+}
+.snipcore-duplicate-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 3px;
+	background: #fcf0d5;
+	color: #8a6d1a;
+	font-size: 12px;
+	white-space: nowrap;
+}
+.snipcore-new-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 3px;
+	background: #edfaef;
+	color: #1a7a35;
+	font-size: 12px;
+	white-space: nowrap;
+}
+.snipcore-import-preview-table td .snipcore-import-rename {
+	margin-top: 4px;
+}
+.snipcore-wrap .wp-heading-inline {
+	margin-bottom: 0;
+}
+.snipcore-wrap .nav-tab-wrapper {
+	margin: 8px 0 0;
+}
+.snipcore-wrap .nav-tab-wrapper .nav-tab {
+	padding: 6px 12px;
+	margin-left: 0;
+	margin-right: 2px;
+}
+.snipcore-tab-lang-badge {
+	display: inline-block;
+	margin-left: 6px;
+	padding: 1px 6px;
+	border-radius: 3px;
+	font-size: 10px;
+	font-weight: 600;
+	line-height: 1.6;
+	color: #fff;
+	vertical-align: middle;
+}
+.snipcore-controls-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px 16px;
+	margin: 8px 0 6px;
+}
+.snipcore-controls-row .subsubsub {
+	margin: 0;
+	float: none;
+}
+.snipcore-status-filter-sep {
+	display: none;
+}
+.snipcore-search-form {
+	margin: 0;
+}
+.snipcore-search-form .search-box {
+	margin: 0;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.snipcore-search-form input[type="search"] {
+	min-width: 280px;
+}
+.snipcore-field-group {
+	margin: 24px 0 8px;
+	padding-bottom: 4px;
+	border-bottom: 1px solid #dcdcde;
+}
+.snipcore-field-group:first-of-type {
+	margin-top: 12px;
+}
+.snipcore-field-group h2 {
+	font-size: 14px;
+	margin: 0;
+}
+/* Add/Edit Snippet page. */
+form.snipcore-loading-on-submit > .snipcore-edit-section:first-of-type {
+	margin-top: 20px;
+}
+.snipcore-edit-columns-top {
+	margin: 20px 0 20px;
+}
+.snipcore-edit-section {
+	width: 65%;
+	margin: 0 0 20px;
+	padding: 20px 24px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+.snipcore-edit-section h2 {
+	margin: 0 0 14px;
+	font-size: 16px;
+}
+.snipcore-edit-section .form-table {
+	width: 100%;
+	margin: 0;
+}
+/* Site Display / Schedule Snippet row labels and controls:
+   matching top padding on th/td keeps the row label aligned
+   with the first line of its control instead of drifting. */
+.snipcore-edit-section .form-table th {
+	width: 160px;
+	padding: 16px 10px 16px 0;
+	vertical-align: top;
+}
+.snipcore-edit-section .form-table td {
+	padding: 16px 10px;
+	vertical-align: top;
+}
+.snipcore-edit-columns {
+	display: grid;
+	grid-template-columns: 60% 40%;
+	gap: 0 24px;
+	align-items: start;
+}
+.snipcore-edit-columns-bordered {
+	display: grid;
+	grid-template-columns: 65% 35%;
+	width: 65%;
+	gap: 0 16px;
+	align-items: stretch;
+	box-sizing: border-box;
+}
+/* Top editor row (Snippet Content + Location/Description/etc.)
+   intentionally spans the full page width rather than the 65%
+   used by Display Rules / Schedule Snippet below it. Columns
+   stay proportional (roughly the same 65/35 split) via fr
+   units so they scale together across the full width. */
+.snipcore-edit-columns-top.snipcore-edit-columns-bordered {
+	grid-template-columns: 1.857fr 1fr;
+	width: 100%;
+}
+.snipcore-edit-columns-bordered .snipcore-edit-column {
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 16px 20px;
+	box-sizing: border-box;
+	min-width: 0;
+}
+.snipcore-edit-columns-bordered .snipcore-edit-column:last-child .snipcore-stacked-field input[type="text"],
+.snipcore-edit-columns-bordered .snipcore-edit-column:last-child .snipcore-stacked-field input[type="number"],
+.snipcore-edit-columns-bordered .snipcore-edit-column:last-child .snipcore-stacked-field select,
+.snipcore-edit-columns-bordered .snipcore-edit-column:last-child .snipcore-stacked-field textarea {
+	padding: 8px 12px;
+	line-height: 1.5;
+	box-sizing: border-box;
+}
+.snipcore-bordered-box {
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 16px 20px;
+	box-sizing: border-box;
+}
+.snipcore-target-select-label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 4px;
+}
+.snipcore-target-select-label-disabled {
+	opacity: 0.5;
+}
+.snipcore-checkbox-list {
+	max-height: 210px;
+	overflow-y: auto;
+	background-color: #fff;
+	padding: 10px 14px;
+}
+.snipcore-checkbox-list-disabled {
+	opacity: 0.5;
+	background-color: #f0f0f1;
+}
+.snipcore-checkbox-group-label {
+	font-weight: 600;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	color: #646970;
+	margin: 10px 0 6px;
+}
+.snipcore-checkbox-group-label:first-child {
+	margin-top: 0;
+}
+.snipcore-checkbox-item {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	gap: 8px;
+	font-weight: normal;
+	margin-bottom: 4px;
+	box-sizing: border-box;
+}
+.snipcore-checkbox-item:last-child {
+	margin-bottom: 0;
+}
+.snipcore-checkbox-item input[type="checkbox"] {
+	margin: 0;
+	flex-shrink: 0;
+}
+.snipcore-checkbox-item input[type="checkbox"]:disabled {
+	cursor: not-allowed;
+}
+/* Wraps the whole Site Display control (toggle + segmented
+   buttons + Pages & Posts list). The 65% width now comes
+   from the enclosing .form-table itself, so this just fills
+   the control column rather than re-narrowing it again. */
+.snipcore-display-fieldset {
+	width: 100%;
+	min-width: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+.snipcore-display-targeting-wrap {
+	margin-top: 12px;
+}
+/* Card-style radio options for the Specific/Exclude Pages &
+   Posts targeting mode: the two options sit inline, side by
+   side, each taking an equal share of the row width. */
+.snipcore-display-mode-cards {
+	display: flex;
+	flex-direction: row;
+	gap: 8px;
+	width: 100%;
+}
+.snipcore-display-mode-card {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex: 1 1 0;
+	min-width: 0;
+	padding: 12px 16px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	background: #f6f7f7;
+	box-sizing: border-box;
+	cursor: pointer;
+	transition: border-color .15s ease, background-color .15s ease;
+}
+.snipcore-display-mode-card:hover {
+	border-color: #8c8f94;
+}
+.snipcore-display-mode-card input[type="radio"] {
+	margin: 0;
+	flex-shrink: 0;
+	width: 18px;
+	height: 18px;
+	accent-color: #2271b1;
+	cursor: pointer;
+}
+.snipcore-display-mode-card input[type="radio"]:focus-visible {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
+}
+.snipcore-display-mode-card input[type="radio"]:disabled {
+	cursor: not-allowed;
+}
+.snipcore-display-mode-card-label {
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.4;
+	color: #50575e;
+}
+.snipcore-display-mode-cards .snipcore-display-mode-card:has( input[type="radio"]:checked ) {
+	border-color: #2271b1;
+	background: #f0f6fc;
+}
+.snipcore-display-mode-cards .snipcore-display-mode-card:has( input[type="radio"]:checked ) .snipcore-display-mode-card-label {
+	color: #2271b1;
+}
+.snipcore-display-targeting-list {
+	margin: 12px 0 0;
+}
+/* Site Display uses the same .snipcore-toggle-switch /
+   .snipcore-toggle-slider visuals as the snippet list
+   activation toggle (see below). It keeps its own input
+   class, snipcore-display-toggle, only so the list page
+   delegated ".snipcore-toggle" change handler never fires
+   for it — the two toggles otherwise look identical. */
+.snipcore-toggle-switch .snipcore-display-toggle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.snipcore-toggle-switch .snipcore-display-toggle:checked ~ .snipcore-toggle-slider {
+	background: #2271b1;
+}
+.snipcore-toggle-switch .snipcore-display-toggle:checked ~ .snipcore-toggle-slider::before {
+	transform: translateX( 14px );
+}
+.snipcore-toggle-switch .snipcore-display-toggle:focus-visible ~ .snipcore-toggle-slider {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
+}
+.snipcore-toggle-text {
+	font-weight: 600;
+	color: #1d2327;
+}
+.snipcore-inline-row {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	margin-bottom: 16px;
+}
+.snipcore-inline-row .snipcore-inline-field {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+.snipcore-inline-row .snipcore-inline-field.snipcore-inline-field-type {
+	flex: 0 0 auto;
+}
+.snipcore-inline-row input[type="text"] {
+	width: 100%;
+}
+.snipcore-stacked-field {
+	margin-bottom: 16px;
+}
+.snipcore-stacked-field:last-child {
+	margin-bottom: 0;
+}
+.snipcore-stacked-field label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 4px;
+}
+.snipcore-stacked-field input[type="text"],
+.snipcore-stacked-field input[type="number"],
+.snipcore-stacked-field select,
+.snipcore-stacked-field textarea {
+	width: 100%;
+}
+.snipcore-segmented {
+	display: inline-flex;
+	width: 100%;
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+.snipcore-segmented input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+}
+.snipcore-segmented label {
+	flex: 1 1 0;
+	margin: 0;
+	padding: 8px 10px;
+	border-right: 1px solid #8c8f94;
+	background: #fff;
+	color: #50575e;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.4;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	transition: background-color .15s ease, color .15s ease;
+}
+.snipcore-segmented label:last-of-type {
+	border-right: none;
+}
+.snipcore-segmented label:hover {
+	background: #f0f0f1;
+}
+.snipcore-segmented input[type="radio"]:checked + label {
+	background: #2271b1;
+	color: #fff;
+}
+.snipcore-segmented input[type="radio"]:checked + label:hover {
+	background: #2271b1;
+}
+.snipcore-segmented input[type="radio"]:focus-visible + label {
+	outline: 2px solid #2271b1;
+	outline-offset: -2px;
+}
+.snipcore-edit-columns-3 {
+	display: grid;
+	grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1fr);
+	gap: 0 24px;
+	align-items: start;
+}
+.snipcore-edit-column {
+	min-width: 0;
+}
+.snipcore-edit-row {
+	margin-top: 16px;
+	padding-top: 16px;
+	border-top: 1px solid #dcdcde;
+}
+.snipcore-edit-actions {
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+@media screen and (max-width: 960px) {
+	.snipcore-edit-columns,
+	.snipcore-edit-columns-3,
+	.snipcore-schedule-fields {
+		grid-template-columns: 1fr;
+	}
+	.snipcore-display-mode-cards {
+		flex-direction: column;
+	}
+}
+.snipcore-code-editor-wrap {
+	max-width: 900px;
+	box-sizing: border-box;
+}
+.snipcore-editor-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-bottom: 4px;
+}
+.snipcore-language-badge {
+	display: inline-block;
+	padding: 2px 10px;
+	border-radius: 3px;
+	background: #2271b1;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: .03em;
+}
+.snipcore-code-editor-wrap .CodeMirror {
+	height: 420px;
+	resize: vertical;
+	overflow: auto;
+	font-size: 13px;
+}
+.snipcore-code-editor-wrap .CodeMirror-focused {
+	border-color: #2271b1;
+	box-shadow: 0 0 0 1px #2271b1;
+}
+.snipcore-header-footer-editor .CodeMirror {
+	height: 300px;
+	resize: vertical;
+	overflow: auto;
+	font-size: 13px;
+}
+.snipcore-hf-sections {
+	max-width: 900px;
+}
+.snipcore-hf-section {
+	margin: 0 0 20px;
+	padding: 18px 20px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+.snipcore-hf-section:last-child {
+	margin-bottom: 0;
+}
+.snipcore-hf-section h2 {
+	font-size: 16px;
+	font-weight: 600;
+	margin: 0 0 4px;
+}
+.snipcore-hf-section .snipcore-header-footer-editor {
+	margin: 10px 0 4px;
+}
+.snipcore-hf-section .submit {
+	margin: 10px 0 0;
+	padding: 0;
+}
+.snipcore-hf-save {
+	min-width: 140px;
+	text-align: center;
+}
+.snipcore-hf-placement {
+	margin: 0 0 2px;
+	font-weight: 600;
+	color: #2271b1;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: .03em;
+}
+.snipcore-hf-description {
+	margin: 0;
+	color: #646970;
+	font-size: 13px;
+}
+.snipcore-tablenav {
+	margin: 6px 0;
+	min-height: 28px;
+}
+.snipcore-tablenav.tablenav.bottom {
+	margin: 10px 0 4px;
+}
+.snipcore-pagination-controls {
+	float: right;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+.snipcore-per-page-form {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+.snipcore-per-page-label {
+	color: #646970;
+	font-size: 13px;
+}
+.snipcore-per-page-select {
+	min-height: 26px;
+	line-height: 1.5;
+	padding: 0 20px 0 6px;
+}
+.snipcore-pagination-controls .displaying-num {
+	color: #646970;
+	font-size: 13px;
+}
+.snipcore-pagination-controls .pagination-links {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+}
+.snipcore-pagination-controls .pagination-links .button,
+.snipcore-pagination-controls .pagination-links .tablenav-pages-navspan {
+	min-width: 26px;
+	height: 26px;
+	line-height: 24px;
+	text-align: center;
+	padding: 0 3px;
+}
+.snipcore-pagination-controls .paging-input {
+	padding: 0 4px;
+	font-size: 13px;
+	color: #3c434a;
+}
+.snipcore-empty-state {
+	padding: 44px 24px !important;
+	text-align: center;
+}
+.snipcore-empty-state-icon {
+	display: block;
+	margin: 0 auto 8px;
+	font-size: 28px;
+	line-height: 1;
+	color: #c3c4c7;
+}
+.snipcore-empty-state-message {
+	font-size: 14px;
+	font-weight: 600;
+	color: #1d2327;
+	margin: 0 0 4px;
+}
+.snipcore-empty-state-sub {
+	font-size: 13px;
+	color: #646970;
+	margin: 0 0 14px;
+}
+.snipcore-toggle-wrap {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+/* Compact toggle switch: a visually-hidden native checkbox
+   (still the same input the AJAX handler listens on) plus a
+   styled slider track/thumb. Keeping the real checkbox
+   input (rather than a div-based widget) preserves native
+   keyboard/focus/label semantics for free. */
+.snipcore-toggle-switch {
+	position: relative;
+	display: inline-block;
+	width: 30px;
+	height: 16px;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+.snipcore-toggle-switch .snipcore-toggle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.snipcore-toggle-slider {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #8c8f94;
+	border-radius: 999px;
+	transition: background-color 0.15s ease-in-out;
+}
+.snipcore-toggle-slider::before {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 12px;
+	height: 12px;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 1px 2px rgba( 0, 0, 0, 0.25 );
+	transition: transform 0.15s ease-in-out;
+}
+.snipcore-toggle-switch .snipcore-toggle:checked ~ .snipcore-toggle-slider {
+	background: #2271b1;
+}
+.snipcore-toggle-switch .snipcore-toggle:checked ~ .snipcore-toggle-slider::before {
+	transform: translateX( 14px );
+}
+.snipcore-toggle-switch .snipcore-toggle:focus-visible ~ .snipcore-toggle-slider {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
+}
+.snipcore-bulk-apply[disabled],
+.button.snipcore-is-busy {
+	opacity: 0.7;
+	cursor: wait;
+}
+.snipcore-schedule-fields {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+	margin-top: 16px;
+	width: 100%;
+}
+.snipcore-schedule-fields .snipcore-stacked-field {
+	margin-bottom: 0;
+}
+.snipcore-schedule-input {
+	width: 100%;
+	height: 32px;
+	padding: 4px 8px;
+	line-height: 1.4;
+	box-sizing: border-box;
+}
+.snipcore-toggle-switch .snipcore-schedule-toggle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.snipcore-toggle-switch .snipcore-schedule-toggle:checked ~ .snipcore-toggle-slider {
+	background: #2271b1;
+}
+.snipcore-toggle-switch .snipcore-schedule-toggle:checked ~ .snipcore-toggle-slider::before {
+	transform: translateX( 14px );
+}
+.snipcore-toggle-switch .snipcore-schedule-toggle:focus-visible ~ .snipcore-toggle-slider {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
+}
+/* Add/Edit Snippet's Active/Inactive toggle: same visuals as
+   the other .snipcore-toggle-switch based toggles, kept on
+   its own class (snipcore-status-toggle, matching the
+   snipcore-display-toggle/snipcore-schedule-toggle pattern
+   above) so it never matches the list page's delegated
+   ".snipcore-toggle" AJAX change handler. */
+.snipcore-toggle-switch .snipcore-status-toggle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.snipcore-toggle-switch .snipcore-status-toggle:checked ~ .snipcore-toggle-slider {
+	background: #2271b1;
+}
+.snipcore-toggle-switch .snipcore-status-toggle:checked ~ .snipcore-toggle-slider::before {
+	transform: translateX( 14px );
+}
+.snipcore-toggle-switch .snipcore-status-toggle:focus-visible ~ .snipcore-toggle-slider {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
+}
+/* Larger toggle variant used for the Edit Snippet header
+   controls, for better visibility next to the page title.
+   Same visuals/behavior as the standard toggle, just bigger. */
+.snipcore-toggle-switch-lg {
+	width: 40px;
+	height: 22px;
+}
+.snipcore-toggle-switch-lg .snipcore-toggle-slider::before {
+	width: 18px;
+	height: 18px;
+}
+.snipcore-toggle-switch-lg .snipcore-status-toggle:checked ~ .snipcore-toggle-slider::before {
+	transform: translateX( 18px );
+}
+/* Edit Snippet screen: Active/Inactive toggle + Update button
+   in the header, aligned with the "Edit Snippet" title. */
+.snipcore-header-edit-actions {
+	float: right;
+	margin-top: 4px;
+}
+/* Add/Edit Snippet: the title, Back link, and Active/Inactive
+   toggle + Save/Update button, styled as a rounded white
+   card, pinned at its current position while the page
+   scrolls. Sticks just below the WP admin bar (32px on
+   desktop; 46px on mobile, see the 782px media query
+   below) so it never overlaps or sits inside it. Layout/
+   alignment of the title, toggle, and button is unchanged. */
+.snipcore-edit-header-sticky {
+	position: sticky;
+	top: 32px;
+	z-index: 30;
+	background: #fff;
+	padding: 8px 12px;
+	border-radius: 6px;
+	box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.06 );
+}
+.snipcore-edit-header-sticky::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.snipcore-edit-header-sticky .wp-header-end {
+	margin-bottom: 0;
+}
+@media screen and (max-width: 782px) {
+	.snipcore-edit-header-sticky {
+		top: 46px;
+	}
+	.snipcore-tablenav {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 10px;
+	}
+	.snipcore-pagination-controls {
+		float: none;
+		justify-content: space-between;
+		width: 100%;
+	}
+	.snipcore-bulk-actions {
+		flex-wrap: wrap;
+	}
+	.snipcore-search-form input[type="search"] {
+		min-width: 0;
+		width: 100%;
+	}
+	.snipcore-search-form .search-box {
+		flex-wrap: wrap;
+	}
+	.snipcore-controls-row {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.snipcore-controls-row .subsubsub {
+		padding-bottom: 4px;
+	}
+}
+@media screen and (max-width: 600px) {
+	.snipcore-pagination-controls {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+	}
+}
+/* Import/Export page. */
+.snipcore-settings-wrap h1 {
+	margin-bottom: 16px;
+}
+.snipcore-settings-wrap .nav-tab-wrapper {
+	margin-bottom: 4px;
+}
+.snipcore-io-columns {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0;
+	margin-top: 20px;
+	align-items: start;
+}
+.snipcore-io-column-export {
+	padding-right: 24px;
+}
+.snipcore-io-column-import {
+	padding-left: 24px;
+	border-left: 1px solid #dcdcde;
+}
+@media screen and (max-width: 960px) {
+	.snipcore-io-columns {
+		grid-template-columns: 1fr;
+	}
+	.snipcore-io-column-export {
+		padding-right: 0;
+	}
+	.snipcore-io-column-import {
+		padding-left: 0;
+		border-left: none;
+		border-top: 1px solid #dcdcde;
+		padding-top: 24px;
+		margin-top: 24px;
+	}
+}
+.snipcore-io-section {
+	padding: 20px 24px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	height: 100%;
+	box-sizing: border-box;
+}
+.snipcore-io-section h2 {
+	margin: 0 0 6px;
+	font-size: 16px;
+}
+.snipcore-io-lede {
+	margin: 0 0 18px;
+	color: #646970;
+	font-size: 13px;
+}
+.snipcore-io-primary-action {
+	margin: 0 0 22px;
+	padding: 16px 18px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+.snipcore-io-primary-action p {
+	margin: 0 0 12px;
+	color: #646970;
+	font-size: 13px;
+}
+.snipcore-io-primary-action .button {
+	margin: 0;
+}
+.snipcore-io-divider {
+	margin: 18px 0;
+	text-align: center;
+	color: #a7aaad;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+.snipcore-io-card {
+	padding: 18px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+.snipcore-io-card-heading {
+	margin: 0 0 12px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #1d2327;
+}
+.snipcore-io-format-choice {
+	display: flex;
+	gap: 20px;
+	margin: 0 0 18px;
+	font-size: 13px;
+}
+.snipcore-io-format-choice label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+.snipcore-select-all-row {
+	display: flex;
+	align-items: center;
+	padding: 10px 14px;
+	border: 1px solid #dcdcde;
+	border-bottom: none;
+	border-radius: 4px 4px 0 0;
+	font-size: 13px;
+}
+.snipcore-select-all-row label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+}
+.snipcore-export-list {
+	max-height: 280px;
+	overflow-y: auto;
+	border: 1px solid #dcdcde;
+	border-radius: 0 0 4px 4px;
+	padding: 0;
+	margin: 0 0 16px;
+	list-style: none;
+}
+.snipcore-export-list li {
+	padding: 0;
+	border-bottom: 1px solid #f0f0f1;
+}
+.snipcore-export-list li:last-child {
+	border-bottom: none;
+}
+.snipcore-export-list label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 9px 14px;
+	margin: 0;
+	font-size: 13px;
+	cursor: pointer;
+}
+.snipcore-export-list label:hover {
+	background: #f6f7f7;
+}
+.snipcore-export-list .snipcore-export-item {
+	margin: 0;
+}
+.snipcore-export-name {
+	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.snipcore-io-upload-area {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	padding: 32px 18px;
+	border: 1px dashed #c3c4c7;
+	border-radius: 4px;
+	margin: 0 0 12px;
+	text-align: center;
+	cursor: pointer;
+	transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+.snipcore-io-upload-area:hover,
+.snipcore-io-upload-area:focus-visible,
+.snipcore-io-upload-area.snipcore-io-upload-dragover {
+	border-color: #2271b1;
+	background: #f6f7f7;
+}
+.snipcore-io-upload-area:focus-visible {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
+}
+.snipcore-io-upload-icon {
+	font-size: 28px;
+	width: 28px;
+	height: 28px;
+	line-height: 1;
+	color: #8c8f94;
+	margin-bottom: 6px;
+}
+.snipcore-io-upload-primary {
+	margin: 0;
+	font-size: 13px;
+	font-weight: 600;
+	color: #1d2327;
+}
+.snipcore-io-upload-secondary {
+	margin: 4px 0 0;
+	font-size: 12px;
+	color: #787c82;
+}
+.snipcore-io-upload-input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.snipcore-import-file-list {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	max-width: 100%;
+	margin: 12px 0 0;
+	text-align: left;
+	pointer-events: none;
+}
+.snipcore-io-hint {
+	margin: 0 0 18px;
+	color: #787c82;
+	font-size: 12px;
+}
+/* General settings page. */
+.snipcore-settings-columns {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0 24px;
+	margin-top: 20px;
+	align-items: start;
+}
+.snipcore-settings-column {
+	min-width: 0;
+}
+.snipcore-settings-group {
+	margin: 0 0 20px;
+	height: auto;
+}
+.snipcore-settings-full-width {
+	margin-top: 36px;
+	margin-bottom: 28px;
+}
+@media screen and (max-width: 960px) {
+	.snipcore-settings-columns {
+		grid-template-columns: 1fr;
+	}
+}
+.snipcore-settings-group h2 {
+	margin: 0 0 14px;
+	font-size: 14px;
+}
+.snipcore-settings-field {
+	margin: 0 0 18px;
+}
+.snipcore-settings-field:last-child {
+	margin-bottom: 0;
+}
+.snipcore-settings-field .description {
+	margin-top: 6px;
+}
+.snipcore-inline-radio-group {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+}
+.snipcore-toggle-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.snipcore-toggle-row-label {
+	margin: 0;
+	font-size: 13px;
+}
+/* Settings-page toggle switch: visually identical to the All
+   Snippets activation switch, but deliberately namespaced so
+   it never matches the .snipcore-toggle selector that the
+   AJAX activation handler listens on. */
+.snipcore-settings-switch {
+	position: relative;
+	display: inline-block;
+	width: 30px;
+	height: 16px;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+.snipcore-settings-switch-input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.snipcore-settings-switch-slider {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #8c8f94;
+	border-radius: 999px;
+	transition: background-color 0.15s ease-in-out;
+}
+.snipcore-settings-switch-slider::before {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 12px;
+	height: 12px;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 1px 2px rgba( 0, 0, 0, 0.25 );
+	transition: transform 0.15s ease-in-out;
+}
+.snipcore-settings-switch-input:checked ~ .snipcore-settings-switch-slider {
+	background: #2271b1;
+}
+.snipcore-settings-switch-input:checked ~ .snipcore-settings-switch-slider::before {
+	transform: translateX( 14px );
+}
+.snipcore-settings-switch-input:focus-visible ~ .snipcore-settings-switch-slider {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
+}
+.snipcore-nested-field {
+	margin-top: 12px;
+	padding-left: 16px;
+	border-left: 2px solid #dcdcde;
+	transition: opacity 0.15s ease-in-out;
+}
+.snipcore-nested-field.snipcore-field-row-disabled {
+	opacity: 0.5;
+}
+.snipcore-danger-zone {
+	border-color: #d63638;
+	padding: 16px 24px;
+}
+.snipcore-danger-zone h2 {
+	color: #d63638;
+}
+.snipcore-settings-wrap .snipcore-loading-on-submit > p.submit {
+	margin-top: 0;
+}
